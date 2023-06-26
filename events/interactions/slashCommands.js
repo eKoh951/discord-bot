@@ -1,4 +1,5 @@
 const { ChatInputCommandInteraction } = require('discord.js')
+const config = require('../../config.js')
 
 module.exports = {
   name: 'interactionCreate',
@@ -18,7 +19,7 @@ module.exports = {
       })
     }
 
-    if (command.developer && interaction.user.id !== '616416928331726859') {
+    if (command.developer && interaction.user.id !== `${config.develoeprId}`) {
       return interaction.reply({
         content: 'This command is only available to the developer.',
       })

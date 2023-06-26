@@ -17,6 +17,7 @@ const client = new Client({
 
 client.config = clientConfig
 client.events = new Collection()
+client.subCommands = new Collection()
 client.commands = new Collection()
 const { connect } = require('mongoose')
 connect(client.config.mongodbUrl, {}).then(() =>

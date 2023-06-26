@@ -25,6 +25,23 @@ module.exports = {
       })
     }
 
-    command.execute(interaction, client)
+    const subCommand = interaction.options.getSubcommand()
+
+    if (subCommand) {
+      const subCommandFile = client.subCommands.get(
+        `${interaction.commandName}.${subCommand}`,
+      )
+
+      if (!subCommandFile) {
+        return interaction.reply({
+          content: 'This subcommand is outdated.',
+          ephemeral: true,
+        })
+      }
+
+      subCommandFile.execute(interaction, client)
+    } else {
+      command.execute(interaction, client)
+    }
   },
 }
